@@ -1,10 +1,17 @@
 import com.company.Training;
+import com.company.User;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import static com.company.UserManaging.updateUserInfo;
+
 
 public class MainFormController {
+
+    @FXML
+    Label labelAllCalories;
+
     @FXML
     Button btnStartTraining = new Button();
 
@@ -34,8 +41,14 @@ public class MainFormController {
 
     String TrainingType;
 
+    User activeUser;
+
     long spentCalories;
 
+    void initData(User user) {
+        activeUser = user;
+        labelAllCalories.setText("Общее количество потраченных каллорий = " + activeUser.getTotalCalories());
+    }
     public void startTraining() {
 
         if (groupTrainingType.getSelectedToggle() != null) {
@@ -73,16 +86,23 @@ public class MainFormController {
     public void stopTraining() {
         isStopped = true;
         spentCalories = Training.getCalories(secondsAll, TrainingType);
-        labelCalories.setText("Потраченные калории: " + spentCalories);
+        activeUser.setLastCalories((double) spentCalories);
+        activeUser.setTotalCalories(activeUser.getTotalCalories() + activeUser.getLastCalories());
+        labelCalories.setText("Потраченные калории: " + activeUser.getLastCalories());
+        labelAllCalories.setText("Общее количество потраченных каллорий = " + (activeUser.getTotalCalories()));
         labelTimer.setText("" + 0 + " : " + 0);
         seconds = 0;
         minutes = 0;
+        secondsAll = 0;
         btnPauseTraining.setDisable(true);
         btnStartTraining.setDisable(false);
         radioSitDowns.setDisable(false);
         radioPushUps.setDisable(false);
         radioSkippingRope.setDisable(false);
         btnStopTraining.setDisable(true);
+        btnPauseTraining.setText("Пауза");
+        updateUserInfo(activeUser);
+
         //System.exit(1);
     }
 

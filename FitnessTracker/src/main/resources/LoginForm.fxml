@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="383.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginFormController">
+   <children>
+      <Button fx:id="btnLogin" layoutX="147.0" layoutY="192.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="25.0" prefWidth="96.0" text="Войти" />
+      <Button fx:id="btnRegister" layoutX="146.0" layoutY="234.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="25.0" prefWidth="96.0" text="Регистрация" />
+      <Label layoutX="129.0" layoutY="21.0" prefHeight="30.0" prefWidth="128.0" text="Fitness tracker" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="146.0" layoutY="75.0" text="Авторизация">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLogin" layoutX="120.0" layoutY="153.0" promptText="Login" />
+      <Label layoutX="153.0" layoutY="129.0" text="Введите логин" />
+   </children>
+</AnchorPane>
